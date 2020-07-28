@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Nierot/file_share/issues"
   },
-  "homepage": "https://github.com/Nierot/file_share#readme"
+  "homepage": "https://github.com/Nierot/file_share#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
