@@ -1,8 +1,41 @@
 const app = require('express')();
 const settings = require('../settings.json');
+const { MongoClient } = require('mongodb');
+let mongo = undefined;
+let db = undefined;
 
-app.get('/', (req, res) => {
-    res.send('oof');
+// Upload
+const multer = require('multer');
+const routes = require('./routes');
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, settings.upload)
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname)
+    }
 })
+const upload = multer({ storage: storage });
 
-app.listen(settings.port, () => console.log(`Listening on http://localhost:${settings.port}`));
+// Routes
+app.get('/', routes.default);
+app.post('/upload', upload.single('file'), (req, res) => routes.upload(req, res, db))
+
+
+// Initializer
+app.listen(settings.port, async () => {
+    console.log(`Listening on http://localhost:${settings.port}`);
+    // Database
+    mongo = new MongoClient(settings.mongo_uri, { useNewUrlParser: true, useUnifiedTopology: true })
+    try {
+        await mongo.connect();
+    } catch (e) {
+        console.error(e);
+    }
+    db = mongo.db('file-upload');
+});
+
+// Shutdown hook
+process.on('exit', async () => {
+    await mongo.close();
+})
