@@ -1,7 +1,14 @@
-body {
+.wrapper {
     background: #00B4DB;
     background: -webkit-linear-gradient(to right, #0083B0, #00B4DB);
     background: linear-gradient(to right, #0083B0, #00B4DB);
+    height: 100vh;
+}
+
+.uploaded {
+    background: #00B4DB;
+    background: -webkit-linear-gradient(to right, #00B4DB, #0083B0);
+    background: linear-gradient(to right, #00B4DB, #0083B0);
     height: 100vh;
 }
   

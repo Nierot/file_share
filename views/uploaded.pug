@@ -1,7 +1,16 @@
 html
   head
     title Uploaded
+    link(href='static/index.css', rel='stylesheet')
+    link(href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css', rel='stylesheet')
   body
-    p Your file has been uploaded and is available for 24 hours at this url:
-    a(href=url)
-      p= url
+    div(class="uploaded")
+      div(class="container p-5")
+        div(class="row mb-5 text-center text-white")
+          div(class="col-lg-10 mx-auto")
+            h1(class="display-4") Your link is ready!
+            p(class="lead") Your file is available for the next 24 hours
+        div(class="row")
+          div(class="col-lg-8 mx-auto")
+            div(class="p-5 bg-white shadow rounded-lg")
+              a(class="text-center mb-4" href=url)= url
