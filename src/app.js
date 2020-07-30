@@ -1,12 +1,15 @@
 const app = require('express')();
 const settings = require('../settings.json');
 const { MongoClient } = require('mongodb');
+const pug = require('pug');
 let mongo = undefined;
 let db = undefined;
 
+app.set('view engine', 'pug');
+const routes = require('./routes');
+
 // Upload
 const multer = require('multer');
-const routes = require('./routes');
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, settings.upload)
@@ -17,9 +20,11 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage });
 
+
 // Routes
 app.get('/', routes.default);
 app.post('/upload', upload.single('file'), (req, res) => routes.upload(req, res, db))
+app.get('/static/*', routes.static);
 
 
 // Initializer
