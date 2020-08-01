@@ -7,30 +7,30 @@
     <meta name="author" content="Nierot">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="static/index.css"/>
-	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
-	<script src="https://use.fontawesome.com/11ce741f6f.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.nierot.com/-/bootstrap.min.css"/>
+	<script src="https://cdn.nierot.com/-/11ce741f6f.js"></script>
+	<script src="https://cdn.nierot.com/-/jquery.min.js"></script>
 	<script>
 		$(() => {
-			let fileUpload = $('#fileUpload');
-			fileUpload.on('change', () => {
-				location.reload();
-				// let file = fileUpload.val();
-				// $('#fileUploadLabel').text(file.match(/[^\\/]*$/)[0]);
-			});
+			// let fileUpload = $('#fileUpload');
+			// fileUpload.on('change', () => {
+			// 	//location.reload();
+			// 	// let file = fileUpload.val();
+			// 	// $('#fileUploadLabel').text(file.match(/[^\\/]*$/)[0]);
+			// });
 
-			$('#upload').on('click', () => {
-				var formData = new FormData();
-				formData.append('file', fileUpload.prop('files')[0]);
+			// $('#upload').on('click', () => {
+			// 	var formData = new FormData();
+			// 	formData.append('file', fileUpload.prop('files')[0]);
 
-				$.ajax({
-					url : "upload",
-					type: "POST",
-					data : formData,
-					processData: false,
-					contentType: false
-				}).done(resp => alert(resp));
-			});
+			// 	$.ajax({
+			// 		url : "upload",
+			// 		type: "POST",
+			// 		data : formData,
+			// 		processData: false,
+			// 		contentType: false
+			// 	}).done(resp => alert(resp));
+			// });
 		});
 	</script>
 </head>
@@ -50,7 +50,7 @@
 						<img src="https://res.cloudinary.com/mhmd/image/upload/v1557366994/img_epm3iz.png" alt="" width="200" class="d-block mx-auto mb-4">
 		
 						<h6 class="text-center mb-4 text-muted">
-							Upload your file here
+							Upload your file here!
 						</h6>
 						<form method="post" action="upload" enctype="multipart/form-data" id="form">
 							<label for="fileUpload" class="file-upload btn btn-primary btn-block rounded-pill shadow" id="fileUploadLabel">
@@ -58,6 +58,7 @@
 									Browse for file
 									<input id="fileUpload" type="file" name="file" id="file">
 							</label>
+							
 							<br>
 							<button id="upload" class="btn btn-primary btn-block rounded-pill shadow ">Upload</button>
 						</form>	
